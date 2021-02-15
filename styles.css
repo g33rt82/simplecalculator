@@ -49,10 +49,14 @@
 
 .clear {
     flex-basis: 50%;
+    border-bottom-width: 1px;
+    border-right-width: 1px ;
 }
 
 .backspace {
     flex-basis: 50%;
+    border-bottom-width: 1px;
+    border-right-width: 1px ;
 }
 
 .numbers {
@@ -67,8 +71,9 @@
 }
 
 .equals {
-
-    flex-basis: 66%;
+    flex-basis: 66.6%;
+    border-bottom-width: 1px;
+    border-right-width: 1px ;
 }
 
 .operator {
