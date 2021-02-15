@@ -3,6 +3,7 @@ const display = document.querySelector(".resultBox");
 let currentDisplay = "";
 let value = "";
 const operators = ["+", "-", "*", "/"];
+let currentOperators = [];
 
 button.addEventListener('click', function (event) {
 
@@ -53,11 +54,31 @@ button.addEventListener('click', function (event) {
                     opIndexes.push(i);
                     intermediateValues.push(intermediateValue);
                     intermediateValue = [];
+                    currentOperators.push(array[i]);
                 }
             }
+            const startValue = value
+            console.log(startValue);
+            console.log("see current operators in Array below");
+            console.log(currentOperators);
             intermediateValues.push(intermediateValue);
             intermediateValues = intermediateValues.map(function (element) { return parseInt(element) });
             const results = [intermediateValues, opIndexes]
+            
+
+            for (let i = 0; i < opIndexes.length; i++) {
+                if (value[opIndexes[i]] == "-") {
+                    intermediateValues[i + 1] = -intermediateValues[i + 1];
+                    value[opIndexes[i]] = "+";
+                    currentOperators[i] = "+";
+                    console.log("intermediate value now have negative values");
+                    console.log(intermediateValues);
+                    console.log(opIndexes);
+                    console.log(currentOperators);
+                    console.log("-----");
+                    console.log(value);
+                }
+            }
 
             for (let i = 0; i < opIndexes.length; i++) {
                 if (value[opIndexes[i]] == "*") {
@@ -99,19 +120,20 @@ button.addEventListener('click', function (event) {
                 }
             }
 
-            for (let i = 0; i < opIndexes.length; i++) {
-                if (value[opIndexes[i]] == "-") {
-                    intermediateValues[i] = intermediateValues[i] - intermediateValues[i + 1];
-                    intermediateValues.splice(i + 1, 1);
-                    opIndexes.splice(i, 1);
-                    i--;
-                    console.log(intermediateValues);
-                    console.log(opIndexes);
-                    console.log("-----");
-                    console.log(intermediateValues);
-                
-                }
-            }
+            /* for (let i = 0; i < opIndexes.length; i++) {
+                 if (value[opIndexes[i]] == "-") {
+                    // intermediateValues[i] = intermediateValues[i] - intermediateValues[i + 1];
+                    intermediateValues[i + 1] =  - intermediateValues[i + 1]    
+                     intermediateValues.splice(i + 1, 1);
+                     opIndexes.splice(i, 1);
+                     i--;
+                     console.log(intermediateValues);
+                     console.log(opIndexes);
+                     console.log("-----");
+                     console.log(intermediateValues);
+                 
+                 }
+             }*/
             display.innerText = intermediateValues[0];
 
         }
